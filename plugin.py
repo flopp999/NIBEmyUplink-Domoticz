@@ -1,17 +1,17 @@
-# NIBEmyUplink Python Plugin
+# NIBEUplink Python Plugin
 #
 # Author: flopp999
 #
 """
-<plugin key="NIBEmyUplink" name="NIBE myUplink 0.1" author="flopp999" version="0.1" wikilink="https://github.com/flopp999/NIBEmyUplink-Domoticz" externallink="https://www.myuplink.com">
+<plugin key="NIBEmyUplink" name="NIBE myUplink 0.2" author="flopp999" version="0.2" wikilink="https://github.com/flopp999/NIBEUplink-Domoticz" externallink="https://www.nibeuplink.com">
     <description>
         <h3>NIBE myUplink is used to read data from api.myuplink.com</h3><br/>
         <h3>Support me with a coffee &<a href="https://www.buymeacoffee.com/flopp999">https://www.buymeacoffee.com/flopp999</a></h3><br/>
         <h3>How to get your Identifier, Secret and URL?</h3>
-        <h4>&<a href="https://github.com/flopp999/NIBEmyUplink-Domoticz#identifier-secret-and-callback-url">https://github.com/flopp999/NIBEmyUplink-Domoticz#identifier-secret-and-callback-url</a></h4>
+        <h4>&<a href="https://github.com/flopp999/NIBEUplink-Domoticz#identifier-secret-and-callback-url">https://github.com/flopp999/NIBEUplink-Domoticz#identifier-secret-and-callback-url</a></h4>
         <br/>
         <h3>How to get your Access Code?</h3>
-        <h4>&<a href="https://github.com/flopp999/NIBEmyUplink-Domoticz#access-code">https://github.com/flopp999/NIBEmyUplink-Domoticz#access-code</a></h4>
+        <h4>&<a href="https://github.com/flopp999/NIBEUplink-Domoticz#access-code">https://github.com/flopp999/NIBEUplink-Domoticz#access-code</a></h4>
         <br/>
         <h3>Configuration</h3>
     </description>
@@ -125,7 +125,7 @@ class BasePlugin:
 
                 elif Connection.Name == ("Get Token"):
                     WriteDebug("Get Token")
-                    Domoticz.Log(self.Refresh)
+#                    Domoticz.Log(self.Refresh)
                     if len(self.Refresh) > 50:
                         WriteDebug("Using reftoken")
                         self.reftoken = self.Refresh
@@ -139,8 +139,8 @@ class BasePlugin:
                     WriteDebug("Get Data 0")
                     self.loop = 0
                     self.SystemUnitId = 0
-                    for category in categories:
-                        Connection.Send({'Verb':'GET', 'URL': '/v2/devices/'+self.SystemID+'/points', 'Headers': headers})
+#                    for category in categories:
+                    Connection.Send({'Verb':'GET', 'URL': '/v2/devices/'+self.SystemID+'/points', 'Headers': headers})
 
                 elif Connection.Name == ("Get SystemID"):
                         WriteDebug("Get SystemID")
@@ -154,12 +154,13 @@ class BasePlugin:
                         WriteDebug("Get Target")
                         Connection.Send({'Verb':'GET', 'URL': '/v2/systems/'+self.SystemID+'/parameters?parameterIds=47398', 'Headers': headers})
 
-                elif Connection.Name == ("Get Categories"):
-                        WriteDebug("Get Categories")
-                        self.SystemUnitId = 0
-                        while self.SystemUnitId < int(self.NoOfSystems):
-                            Connection.Send({'Verb':'GET', 'URL': '/api/v1/systems/'+self.SystemID+'/serviceinfo/categories?systemUnitId='+str(self.SystemUnitId), 'Headers': headers})
-                            self.SystemUnitId += 1
+#                elif Connection.Name == ("Get Categories"):
+#                        WriteDebug("Get Categories")
+#                        self.SystemUnitId = 0
+#                        while self.SystemUnitId < int(self.NoOfSystems):
+#                        Connection.Send({'Verb':'GET', 'URL': '/api/v1/systems/'+self.SystemID+'/serviceinfo/categories?systemUnitId='+str(self.SystemUnitId), 'Headers': headers})
+#                        Connection.Send({'Verb':'GET', 'URL': '/v2/devices/'+self.SystemID+'/smart-home-categories', 'Headers': headers})
+#                        self.SystemUnitId += 1
 
 
 
@@ -216,14 +217,17 @@ class BasePlugin:
                 else:
                     self.GetData.Connect()
 
-            elif Connection.Name == ("Get Categories"):
-                for each in Data:
-                    self.Categories.append(each["categoryId"])
-                Domoticz.Log(str(self.Categories))
-                if self.GetCategories.Connected() or self.GetCategories.Connecting():
-                    self.GetCategories.Disconnect()
+#            elif Connection.Name == ("Get Categories"):
+#                Domoticz.Log(Data)
+#                for each in Data:
+#                    self.Categories.append(each["categoryId"])
+#                Domoticz.Log(str(self.Categories))
+#                if self.GetCategories.Connected() or self.GetCategories.Connecting():
+#                    self.GetCategories.Disconnect()
 
             elif Connection.Name == ("Get Data 0"):
+#                self.GetCategories.Connect()
+                Domoticz.Log(Data)
                 for each in Data:
                     UpdateDevice(str(each["value"]), each["parameterUnit"], each["parameterName"], int(each["parameterId"]))
 
