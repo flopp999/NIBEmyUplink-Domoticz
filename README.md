@@ -14,7 +14,7 @@ You need to have some information to be able to use this plugin:
 [Identifier](https://github.com/flopp999/NIBEmyUplink-Domoticz/blob/main/README.md#Identifier,-Secret-and-URL)  
 [Secret](https://github.com/flopp999/NIBEmyUplink-Domoticz/blob/main/README.md#Identifier,-Secret-and-URL)  
 [Callback URL](https://github.com/flopp999/NIBEmyUplink-Domoticz/blob/main/README.md#Identifier,-Secret-and-Callback-URL)  
-[Access code](https://github.com/flopp999/NIBEmyUplink-Domoticz/blob/main/README.md#Access-code)
+[Auth code](https://github.com/flopp999/NIBEmyUplink-Domoticz/blob/main/README.md#Auth-code)
 
 # Identifier, Secret and Callback URL
 Login to [NIBE myUplink API](https://dev.myuplink.com/)  
@@ -22,8 +22,8 @@ Create an application under My Applications
 For Callback URL use "h<span>ttps://a<span>pi.nib<span>euplink.com/"  
 Copy Identifier, Secret and Callback URL, paste to NIBEUplink hardware in Domoticz  
 
-# Access code
-You need to create an Access code before first use  
+# Auth code
+You need to create an Auth code before first use  
 Copy the link below and open it in your browser    
 "https://api.myuplink.com/oauth/authorize?response_type=code&client_id=yyyyyy&scope=READSYSTEM WRITESYSTEM offline_access&redirect_uri=http://validurl.local:1234&state=x"  
 Before open the link change yyyyyy to your Identifier, NOT YOUR SYSTEM ID!!!  
