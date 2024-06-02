@@ -24,9 +24,9 @@ Copy Identifier, Secret and Callback URL, paste to NIBEUplink hardware in Domoti
 
 # Access code
 You need to create an Access code before first use  
-Copy the link below and open it in your browaer, you will get an error that is OK  
+Copy the link below and open it in your browser    
 "https://api.myuplink.com/oauth/authorize?response_type=code&client_id=yyyyyy&scope=READSYSTEM WRITESYSTEM offline_access&redirect_uri=http://validurl.local:1234&state=x"  
-Once you clicked it, in the address bar change yyyyyy to your Identifier, NOT YOUR SYSTEM ID!!!  
+Before open the link change yyyyyy to your Identifier, NOT YOUR SYSTEM ID!!!  
 Also change redirect_url to your own Callbrack URL  
 Then it will ask you to login and accept.  
 When this is done the address bar will look something like below  
